@@ -28,8 +28,8 @@ test.cb('create success of sri rev manifest', (t) => {
     .src(`${fixturesPath}/js/*.js`)
     .pipe(rev())
     .pipe(gulp.dest(resultsPath))
-    .pipe(rev.manifest({ merge: true, buildBase: resultsPath }))
-    .pipe(gulpSri({ buildBase: resultsPath }))
+    .pipe(rev.manifest({ merge: true, base: resultsPath }))
+    .pipe(gulpSri({ base: resultsPath }))
     .pipe(gulp.dest(resultsPath))
     .on('error', (err) => {
       t.fail(err);

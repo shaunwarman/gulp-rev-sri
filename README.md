@@ -15,6 +15,7 @@
 
 * [Install](#install)
 * [Usage](#usage)
+* [Options](#options)
 * [Contributors](#contributors)
 * [License](#license)
 
@@ -38,18 +39,51 @@ yarn add gulp-rev-sri
 
 ```js
 const gulp = require('gulp');
-const gulpSri = require('gulp-rev-sri');
+const rev = require('gulp-rev');
+const revSri = require('gulp-rev-sri');
 
 gulp.src('./myassets/**/*')
   .pipe(rev())
   .pipe(gulp.dest('./somedestination/'))
   .pipe(rev.manifest())
-  .pipe(gulpSri({ buildBase: 'some/build/path' }))
+  .pipe(revSri({ base: 'some/build/path', manifestName: 'sri-manifest.json' }))
   .pipe(gulp.dest('./somedestination/'))
   .on('end', () => { ... });
 
 // rev-manifest.json
 // { <original_file>: { path: <file_with_rev_hash>, integrity: 'sha256-<hash_of_file>' } }
+```
+
+
+## Options
+
+* `base` - base file path for build files
+* `manifestName` (default: `rev-manifest.json`) - name of the manifest file being created
+
+_Warning_: The original `rev-manifest.json` is in the format:
+
+```json
+{
+  "<file_path>": "<rev_file_path>",
+  "<file_path>": "<rev_file_path>"
+  ...
+}
+```
+
+while the new sri format couples a file path with it's integrity hash in the new format of:
+
+```json
+{
+  "<file_path>": {
+    "path": "<rev_file_path>",
+    "integrity": "sha256-<hash_of_file_as_base64_encoded>"
+  },
+  "<file_path>": {
+    "path": "<rev_file_path>",
+    "integrity": "sha256-<hash_of_file_as_base64_encoded>"
+  },
+  ...
+}
 ```
 
 
