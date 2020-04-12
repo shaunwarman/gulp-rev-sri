@@ -1,7 +1,7 @@
 {
   "name": "gulp-rev-sri",
   "description": "A gulp-rev subresource integrity plugin",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Shaun <shaunwarman1@gmail.com> (https://shaunwarman.com)",
   "bugs": {
     "url": "https://github.com/shaunwarman/gulp-rev-sri/issues",
