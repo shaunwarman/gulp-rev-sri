@@ -50,7 +50,7 @@ gulp.src('./myassets/**/*')
   .pipe(gulp.dest('./somedestination/'))
   .on('end', () => { ... });
 
-// rev-manifest.json
+// sri-manifest.json
 // { <original_file>: { path: <file_with_rev_hash>, integrity: 'sha256-<hash_of_file>' } }
 ```
 
@@ -58,7 +58,7 @@ gulp.src('./myassets/**/*')
 ## Options
 
 * `base` - base file path for build files
-* `manifestName` (default: `rev-manifest.json`) - name of the manifest file being created
+* `manifestName` (default: `sri-manifest.json`) - name of the manifest file being created (_Warning_ do not use `rev-manifest.json`)
 
 _Warning_: The original `rev-manifest.json` is in the format:
 
@@ -85,6 +85,8 @@ while the new sri format couples a file path with it's integrity hash in the new
   ...
 }
 ```
+
+_It's recommended that you choose a different file name from `rev-manifest.json` due to potential complications in merging existing files._
 
 
 ## Contributors

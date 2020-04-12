@@ -8,7 +8,7 @@ const access = promisify(fs.access);
 const readFile = promisify(fs.readFile);
 
 module.exports = (options) => {
-  const { base, manifestName = 'rev-manifest.json' } = options;
+  const { base, manifestName = 'sri-manifest.json' } = options;
   return through.obj(
     async (file, enc, cb) => {
       try {
