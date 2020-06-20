@@ -16,6 +16,7 @@
     "Shaun <shaunwarman1@gmail.com> (https://shaunwarman.com)"
   ],
   "dependencies": {
+    "hasha": "^5.2.0",
     "vinyl": "^2.2.0"
   },
   "devDependencies": {
@@ -94,6 +95,10 @@
     "space": true,
     "extends": [
       "xo-lass"
-    ]
+    ],
+    "rules": {
+      "no-await-in-loop": "off",
+      "unicorn/prefer-optional-catch-binding": "off"
+    }
   }
 }

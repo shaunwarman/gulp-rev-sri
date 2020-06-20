@@ -8,7 +8,6 @@ const rev = require('gulp-rev');
 const gulpSri = require('..');
 
 const access = promisify(fs.access);
-const readFile = promisify(fs.readFile);
 const remove = promisify(fs.unlink);
 
 const fixturesPath = path.join(__dirname, 'fixtures');
@@ -35,14 +34,6 @@ test.cb('create success of sri rev manifest', (t) => {
       t.fail(err);
     })
     .on('end', async () => {
-      try {
-        const content = await readFile(`${resultsPath}/rev-manifest.json`);
-        const manifest = JSON.parse(content.toString());
-        t.is(typeof manifest, 'object');
-      } catch (err) {
-        console.error(err);
-      }
-
       t.end();
     });
 });

@@ -24,19 +24,17 @@ module.exports = (options) => {
           originalManifest = JSON.parse(file.toString());
         } catch (_) {}
 
-        await Promise.all(
-          files.map(async (file) => {
-            const content = await readFile(path.join(base, original[file]));
-            const hash = await hasha.async(content, {
-              encoding: 'base64',
-              algorithm: 'sha256'
-            });
-            manifest[file] = {
-              path: original[file],
-              integrity: `sha256-${hash}`
-            };
-          })
-        );
+        for (const file of files) {
+          const content = await readFile(path.join(base, original[file]));
+          const hash = await hasha.async(content.toString(), {
+            encoding: 'base64',
+            algorithm: 'sha256'
+          });
+          manifest[file] = {
+            path: original[file],
+            integrity: `sha256-${hash}`
+          };
+        }
 
         const finalManifest = Object.assign(originalManifest, manifest);
         const sriManifest = new Vinyl({
